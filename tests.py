@@ -37,7 +37,7 @@ class TestSequenceFunctions(unittest.TestCase):
 		self.assertTrue(os.path.exists("tmptest/test2"))
 
     
-   	def test_amv_moves_and_makes_symlink(self):
+	def test_amv_moves_and_makes_symlink(self):
 		
 		self.assertTrue(os.path.exists(testfolder))
 		self.assertFalse(os.path.exists(testfolder_dest))

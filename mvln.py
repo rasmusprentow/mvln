@@ -5,6 +5,37 @@
 
 import shutil,os, stat,shlex, ntpath
 
+
+class MvLnFile:
+
+	def __init__(self, src, dst):
+		self.src = src
+		self.dst = dst
+
+
+
+class Converter:
+	
+	def __init__(self,str):
+		self.str = str
+
+	def getLines(self):
+		return self.str.splitlines()
+
+	def splitLine(line):
+		srcdest = line.split(" ")
+		return MvLnFile(srcdest[0],srcdest[1])
+
+	def getFiles(self):
+		files = []
+		for line in self.getLines():
+			files.append(Converter.splitLine(line))
+		return files
+		
+
+class IsEqual:
+	pass
+
 class Mvln:
 
 	def fromFilesSpec(fileSpec):
@@ -26,9 +57,11 @@ class Mvln:
 	  os.chown(dst, owner, group)
 	  os.chmod(dst,mode)
 
-	def mvAndLink(src,dst):
-		
 
+	def mvAndLink(src,dst):
+		if src is dst:
+			raise IsEqual
+		
 		Mvln.copyPreserved(src,dst)
 		if os.path.isdir(dst):
 
@@ -36,8 +69,13 @@ class Mvln:
 			
 			
 			os.symlink(dst,src.rstrip('/'))
+			#print("Removing tree {}".format(src))
 		else:
-			print("Destination: "+ dst + " was not copied")	
+			print("Destination: {} was not copied".format(dst))	
 		
+
+	def mvAndLinkFile(mvlnfile):
+		Mvln.mvAndLink(mvlnfile.src,mvlnfile.dst)
+
 		
 

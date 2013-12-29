@@ -1,24 +1,24 @@
 #converter_test.py
 
-from converter import *
+from mvln import *
 
 
 import unittest, os, shutil
 
-testfolder = os.getcwd()+ "/tmptest/ssd/testfolder/"
-testfolder_dest = os.getcwd()+"/tmptest/old/testfolder/"
-testfolder2 = os.getcwd()+ "/tmptest/ssd/testfolder2/"
-testfolder2_dest = os.getcwd()+"/tmptest/old/testfolder2/"
+testfolder = os.getcwd()+ "/__tmptest__/src/testfolder/"
+testfolder_dest = os.getcwd()+"/__tmptest__/dst/testfolder/"
+testfolder2 = os.getcwd()+ "/__tmptest__/src/testfolder2/"
+testfolder2_dest = os.getcwd()+"/__tmptest__/dst/testfolder2/"
 class TestSequenceFunctions(unittest.TestCase):
 	def setUp(self):
 		try:
-			shutil.rmtree("tmptest")
+			shutil.rmtree("__tmptest__")
 		except OSError:	
 			pass
 		
-		os.mkdir("tmptest")
-		os.mkdir("tmptest/old")
-		os.mkdir("tmptest/ssd")
+		os.mkdir("__tmptest__")
+		os.mkdir("__tmptest__/dst")
+		os.mkdir("__tmptest__/src")
 		os.mkdir(testfolder)
 		os.mkdir(testfolder2)	
 		

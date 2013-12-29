@@ -39,4 +39,4 @@ nosetests.xml
 *.sublime*
 
 # Test folders
-tmptest
+__tmptest__

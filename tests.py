@@ -33,7 +33,7 @@ class TestSequenceFunctions(unittest.TestCase):
 			shutil.rmtree("tmptest/test2")
 		except OSError:	
 			pass
-		copyPreserved("tmptest/test","tmptest/test2")
+		Mvln.copyPreserved("tmptest/test","tmptest/test2")
 		self.assertTrue(os.path.exists("tmptest/test2"))
 
     
@@ -41,8 +41,8 @@ class TestSequenceFunctions(unittest.TestCase):
 		
 		self.assertTrue(os.path.exists(testfolder))
 		self.assertFalse(os.path.exists(testfolder_dest))
-				
-		mvAndLink(testfolder)
+		#dst = os.getcwd()+"/tmptest/old/"+Mvln.pathLeaf(src)+"/"		
+		Mvln.mvAndLink(testfolder, testfolder_dest)
 
 		self.assertTrue(os.path.exists(testfolder_dest))
 		self.assertTrue(os.path.islink(testfolder.rstrip('/')), testfolder)
@@ -56,6 +56,8 @@ class TestSequenceFunctions(unittest.TestCase):
 
 		self.assertTrue(os.path.islink(testfolder.rstrip('/')))
 
-		mvAndLink(testfolder) ## should raise exception
+		self.assertRaises(FileExistsError,Mvln.mvAndLink,(testfolder), (testfolder_dest)) ## should raise exception
+
+
 if __name__ == '__main__':
     unittest.main()

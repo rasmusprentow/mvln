@@ -1,16 +1,24 @@
 #tests.py
 
+import sys
+
+sys.path.insert(0,"..") 
+sys.path.insert(0,"mvln") 
+
+import random, os,shutil
+import unittest, sys
+
 from mvln import *
 
 
-import random, os
-import unittest
+#print(__all__)
+#sys.exit()
 
 testfolder = os.getcwd()+ "/__tmptest__/src/testfolder/"
 testfolder_dest = os.getcwd()+"/__tmptest__/dst/testfolder/"
 class TestSequenceFunctions(unittest.TestCase):
 	def setUp(self):
-		
+		100
 
 		try:
 			shutil.rmtree("__tmptest__")

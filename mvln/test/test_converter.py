@@ -1,7 +1,12 @@
 #converter_test.py
 
-from mvln import *
 
+import sys
+
+sys.path.insert(0,"..") 
+sys.path.insert(0,"mvln") 
+
+from mvln import *
 
 import unittest, os, shutil
 

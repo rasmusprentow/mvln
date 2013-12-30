@@ -40,8 +40,8 @@ $ mvln < spec.txt
 Where `spec.txt` contains:
 
 ```bash
-/path/to/source1/ /path/to/destination/
-/path/to/source1/ /path/to/source2/
+/path/to/source1/ /path/to/destination1/
+/path/to/source2/ /path/to/destination2/
 ```
 
 

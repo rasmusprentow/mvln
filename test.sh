@@ -7,8 +7,15 @@
 ##### configuration
 TESTDIR=__tmptest__
 TESTFILE=__test.txt
-RUNNABLE=mvln
-#python3 mvln/mvln.py
+INSTALLED_SCRIPT='mvln'
+LOCAL_SCRIPT='python3 mvln/mvln.py'
+
+if [[ "$1" != "-l" ]]
+then 
+	RUNNABLE=$LOCAL_SCRIPT
+else
+	RUNNABLE=$INSTALLED_SCRIPT
+fi
 
 
 
@@ -58,28 +65,20 @@ $RUNNABLE  < $TESTFILE
 assert $TESTDIR/dst/testfolder $TESTDIR/src/testfolder
 assert $TESTDIR/dst/testfolder2 $TESTDIR/src/testfolder2
 
-#### Test 2
-setup
 
-$RUNNABLE --file $TESTFILE
-
-assert $TESTDIR/dst/testfolder $TESTDIR/src/testfolder
-assert $TESTDIR/dst/testfolder2 $TESTDIR/src/testfolder2
-
-##### Test 3
+##### Test 2
 setup 
 
-$RUNNABLE -v --file $TESTFILE
+$RUNNABLE -v $TESTDIR/src/testfolder $TESTDIR/dst/testfolder
+$RUNNABLE  $TESTDIR/src/testfolder2 $TESTDIR/dst/testfolder2
 
-assert $TESTDIR/dst/testfolder $TESTDIR/src/testfolder
-assert $TESTDIR/dst/testfolder2 $TESTDIR/src/testfolder2
 
 
 ##### Clean up:
 if [[ "$1" != "-d" ]]
 then 
-rm -r $TESTDIR
-rm $TESTFILE 
+	rm -r $TESTDIR
+	rm $TESTFILE 
 fi
 
 
